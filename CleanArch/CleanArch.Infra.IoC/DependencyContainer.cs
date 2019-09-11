@@ -28,14 +28,9 @@ namespace CleanArch.Infra.IoC
             services.AddScoped<IRequestHandler<CreateCourseCommand,bool>, CourseCommandHandler>();
             #endregion
 
-
-
-
             #region "Aplication Layer"
             services.AddScoped<ICourseService, CourseService>();
-
             #endregion
-
             #region "Repository"
             services.AddScoped<ICourseRepository, CourseRepository>();
             #endregion

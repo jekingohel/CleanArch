@@ -1,4 +1,7 @@
-﻿using CleanArch.Domain.Interfaces;
+﻿using CleanArch.Domain.Commands;
+using CleanArch.Domain.Core.Bus;
+using CleanArch.Domain.Entities;
+using CleanArch.Domain.Interfaces;
 using CleanArche.Application.Interfaces;
 using CleanArche.Application.ViewModels;
 using System;
@@ -10,10 +13,22 @@ namespace CleanArche.Application.Services
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
-        public CourseService(ICourseRepository courseRepository)
+
+        private readonly IMediatorHandler _bus;
+        public CourseService(ICourseRepository courseRepository, 
+            IMediatorHandler bus)
         {
             _courseRepository = courseRepository;
+            _bus = bus;
         }
+
+        public void Add(CourseViewModel model)
+        {
+            var creatCourseCommand = new CreateCourseCommand(model.Name,model.Description,model.ImageUrl);
+            _bus.SenCommand(creatCourseCommand);
+            //_courseRepository.Add(new Course(model.Name,model.Description,model.ImageUrl));
+        }
+
         public CourseViewModel GetCourses()
         {
             return new CourseViewModel

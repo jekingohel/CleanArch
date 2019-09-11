@@ -9,6 +9,5 @@ namespace CleanArch.Domain.Core.Bus
     public interface IMediatorHandler
     {
         Task SenCommand<T>(T command) where T : Command;
-
     }
 }
