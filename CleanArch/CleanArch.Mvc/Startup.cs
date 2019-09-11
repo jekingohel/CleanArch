@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using CleanArch.Mvc.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CleanArch.Infra.Data.Context;
 using CleanArch.Infra.IoC;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
@@ -46,11 +45,7 @@ namespace CleanArch.Mvc
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddDbContext<CleanArchDBContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("UniversiyDbConnection"));
-            });
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             RegisterServices(services);
