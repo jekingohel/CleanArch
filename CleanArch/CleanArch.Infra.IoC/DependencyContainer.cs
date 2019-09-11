@@ -25,7 +25,7 @@ namespace CleanArch.Infra.IoC
             #endregion
 
             #region "Context"
-            services.AddScoped<CleanArchDBContext, CleanArchDBContext>();
+            //services.AddScoped<CleanArchDBContext, CleanArchDBContext>();
             #endregion
         }
     }

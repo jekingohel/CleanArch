@@ -15,6 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CleanArch.Infra.Data.Context;
 using CleanArch.Infra.IoC;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using System.Reflection;
 
 namespace CleanArch.Mvc
 {
@@ -36,7 +39,7 @@ namespace CleanArch.Mvc
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DbConnection")));
@@ -44,7 +47,8 @@ namespace CleanArch.Mvc
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddDbContext<CleanArchDBContext>(options => {
+            services.AddDbContext<CleanArchDBContext>(options =>
+            {
                 options.UseSqlServer(Configuration.GetConnectionString("UniversiyDbConnection"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -68,7 +72,9 @@ namespace CleanArch.Mvc
             }
 
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
+
             app.UseCookiePolicy();
 
             app.UseAuthentication();
@@ -81,7 +87,8 @@ namespace CleanArch.Mvc
             });
         }
 
-        private static void RegisterServices(IServiceCollection services) {
+        private static void RegisterServices(IServiceCollection services)
+        {
             DependencyContainer.RegisterServices(services);
         }
     }
