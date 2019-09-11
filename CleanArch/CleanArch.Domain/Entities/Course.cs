@@ -6,9 +6,16 @@ namespace CleanArch.Domain.Entities
 {
     public class Course
     {
-        public long CourseId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public Course(string name, string description, string imageUrl)
+        {
+            Name = name;
+            Description = description;
+            ImageUrl = imageUrl;
+        }
+
+        public long CourseId { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public string ImageUrl { get; private  set; }
     }
 }
