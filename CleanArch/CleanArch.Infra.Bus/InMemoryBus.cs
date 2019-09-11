@@ -20,7 +20,7 @@ namespace CleanArch.Infra.Bus
 
         public Task SenCommand<T>(T command) where T : Command
         {
-            throw new NotImplementedException();
+            return _mediator.Send(command);
         }
     }
 }

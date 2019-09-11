@@ -26,7 +26,7 @@ namespace CleanArche.Application.Services
         {
             var creatCourseCommand = new CreateCourseCommand(model.Name,model.Description,model.ImageUrl);
             _bus.SenCommand(creatCourseCommand);
-            //_courseRepository.Add(new Course(model.Name,model.Description,model.ImageUrl));
+            
         }
 
         public CourseViewModel GetCourses()
