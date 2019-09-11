@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CleanArch.Api
 {
@@ -34,6 +35,13 @@ namespace CleanArch.Api
                 options.UseSqlServer(Configuration.GetConnectionString("UniversiyDbConnection"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.DescribeAllParametersInCamelCase();
+                options.SwaggerDoc("v1", new Info { Title = "Documentação", Version = "v1" });
+            });
 
             services.AddMediatR(typeof(Startup));
 
@@ -57,8 +65,13 @@ namespace CleanArch.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
+            
+            //app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CleanArch V1");
+            });
             app.UseMvc();
         }
     }

@@ -11,16 +11,16 @@ namespace CleanArch.Infra.Bus
     public sealed class InMemoryBus : IMediatorHandler
     {
         private readonly IMediator _mediator;
+        
         public InMemoryBus(IMediator mediator)
         {
             _mediator = mediator;
+            
         }
 
         public Task SenCommand<T>(T command) where T : Command
         {
             throw new NotImplementedException();
         }
-
-
     }
 }
