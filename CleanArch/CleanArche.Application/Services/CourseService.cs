@@ -10,7 +10,6 @@ namespace CleanArche.Application.Services
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
-
         public CourseService(ICourseRepository courseRepository)
         {
             _courseRepository = courseRepository;
@@ -22,7 +21,5 @@ namespace CleanArche.Application.Services
                 Courses = _courseRepository.GetCourses()
             };
         }
-
     }
 }
-
