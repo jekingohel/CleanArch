@@ -13,7 +13,6 @@ namespace CleanArche.Application.Services
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
-
         private readonly IMediatorHandler _bus;
         public CourseService(ICourseRepository courseRepository, 
             IMediatorHandler bus)
@@ -26,7 +25,6 @@ namespace CleanArche.Application.Services
         {
             var creatCourseCommand = new CreateCourseCommand(model.Name,model.Description,model.ImageUrl);
             _bus.SenCommand(creatCourseCommand);
-            
         }
 
         public CourseViewModel GetCourses()

@@ -52,8 +52,10 @@ namespace CleanArch.Mvc
             {
                 options.UseSqlServer(Configuration.GetConnectionString("UniversiyDbConnection"));
             });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMediatR(typeof(Startup));
+
             RegisterServices(services);
         }
 
